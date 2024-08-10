@@ -30,7 +30,7 @@ img {
 .userInitials {
   background-color: var(--snow);
   padding: 0.4rem;
-  border-radius: 4px;
+  border-radius: 0.25rem;
   font-weight: bold;
   font-family: var(--font-caption);
   line-height: 100%;
