@@ -1,9 +1,11 @@
 import { Outlet } from 'react-router-dom'
-import { Header } from '../components/Header'
+import { Header } from '../../components/Header'
+
+import styles from './style.module.css'
 
 export function DefaultLayout() {
   return (
-    <div>
+    <div className={styles.pageContainer}>
       <Header />
       <Outlet />
     </div>

@@ -1,0 +1,10 @@
+.mainContent {
+  background-color: var(--dark-snow);
+  padding: 1.5rem;
+  flex: 1;
+}
+
+.mainContent_title {
+  font-size: 1.5rem;
+  text-align: center;
+}
