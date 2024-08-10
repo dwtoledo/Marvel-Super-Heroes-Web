@@ -4,7 +4,53 @@
   flex: 1;
 }
 
-.mainContent_title {
-  font-size: 1.5rem;
+@media screen and (min-width: 768px) {
+  .mainContent {
+    padding: 2.5rem 8vw;
+  }
+}
+
+.characterCards {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.characterCards_caption {
   text-align: center;
+  font-size: 0.75rem;
+}
+
+.characterCard {
+  background-color: var(--white);
+  box-shadow: 0px 0px 5px var(--shadow);
+  display: flex;
+  padding: 0.72rem 1rem;
+  gap: 1.5rem;
+  align-items: center;
+  border-radius: 0.25rem;
+}
+
+.characterCard_avatar {
+  width: 3rem;
+  height: auto;
+  border-radius: 0.25rem;
+}
+
+.characterCard_name {
+  font-weight: bold;
+  font-size: 0.875rem;
+}
+
+.loaderContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loaderMessage {
+  font-weight: bold;
+  font-size: 1.5rem;
 }
