@@ -1,0 +1,15 @@
+:root {
+  --white: #fff;
+  --snow: #f5f5f5;
+  --dark-snow: #e5e5e5;
+  --smoke: #8e8e8e;
+  --dark-smoke: #555555;
+  --dark-blue: #167abc;
+  --shadow: #00000033;
+  --font-caption: "PT Sans Caption", sans-serif;
+}
+
+body {
+  font-family: "PT Sans", sans-serif;
+  color: var(--dark-smoke);
+}
