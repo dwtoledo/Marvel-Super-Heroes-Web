@@ -1,14 +1,20 @@
-import { useEffect, useState } from 'react'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @stylistic/max-len */
+import { useContext, useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import md5 from 'crypto-js/md5'
 
+import { CharacterDetailsContext } from '../../contexts/character-details'
 import { LoaderSpin } from '../../components/LoaderSpin'
 
 import styles from './style.module.css'
 
 export function Home() {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [characters, setCharacters] = useState<any[]>([])
   const [isLoading, setIsLoading] = useState(true)
+  const { setCharacterDetails } = useContext(CharacterDetailsContext)
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     async function listMarvelCharacters(limit = 10, offset = 0) {
@@ -35,14 +41,19 @@ export function Home() {
 
     listMarvelCharacters().then((characters) => {
       setCharacters(characters)
-    }).catch()
+    })
   }, [])
+
+  function handleSuperHeroCardClick(character: any) {
+    setCharacterDetails(character)
+    navigate(`/details/${character.id}`)
+  }
 
   function getSuperHeroCards() {
     if (!characters.length) return null
     return characters.map((character) => {
       return (
-        <div key={character.id} className={styles.characterCard}>
+        <div className={styles.characterCard} key={character.id} onClick={() => handleSuperHeroCardClick(character)}>
           <img
             className={styles.characterCard_avatar}
             src={character.thumbnail.path + '.' + character.thumbnail.extension}
