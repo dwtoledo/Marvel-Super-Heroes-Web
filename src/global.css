@@ -14,3 +14,21 @@ body {
   font-family: "PT Sans", sans-serif;
   color: var(--dark-smoke);
 }
+
+html {
+  font-size: 14px;
+}
+
+h1 {
+  font-size: 1.714285714285714rem;
+}
+
+@media screen and (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+}
