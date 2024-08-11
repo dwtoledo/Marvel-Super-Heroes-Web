@@ -5,12 +5,12 @@
   width: 11em;
   height: 11em;
   border-radius: 50%;
-  background-color: var(--accent);
-  background-color: -moz-linear-gradient(left, var(--accent) 10%, rgba(255, 255, 255, 0) 42%);
-  background-color: -webkit-linear-gradient(left, var(--accent) 10%, rgba(255, 255, 255, 0) 42%);
-  background-color: -o-linear-gradient(left, var(--accent) 10%, rgba(255, 255, 255, 0) 42%);
-  background-color: -ms-linear-gradient(left, var(--accent) 10%, rgba(255, 255, 255, 0) 42%);
-  background-color: linear-gradient(to right, var(--accent) 10%, rgba(255, 255, 255, 0) 42%);
+  background: var(--accent);
+  background: -moz-linear-gradient(left, var(--accent) 10%, rgba(255, 255, 255, 0) 42%);
+  background: -webkit-linear-gradient(left, var(--accent) 10%, rgba(255, 255, 255, 0) 42%);
+  background: -o-linear-gradient(left, var(--accent) 10%, rgba(255, 255, 255, 0) 42%);
+  background: -ms-linear-gradient(left, var(--accent) 10%, rgba(255, 255, 255, 0) 42%);
+  background: linear-gradient(to right, var(--accent) 10%, rgba(255, 255, 255, 0) 42%);
   position: relative;
   -webkit-animation: load3 1.4s infinite linear;
   animation: load3 1.4s infinite linear;
@@ -22,7 +22,7 @@
 .loaderSpin:before {
   width: 50%;
   height: 50%;
-  background-color: var(--accent);
+  background: var(--accent);
   border-radius: 100% 0 0 0;
   position: absolute;
   top: 0;
@@ -31,7 +31,7 @@
 }
 
 .loaderSpin:after {
-  background-color: black;
+  background: #000;
   width: 75%;
   height: 75%;
   border-radius: 50%;
