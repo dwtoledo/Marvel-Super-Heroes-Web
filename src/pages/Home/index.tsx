@@ -1,28 +1,40 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @stylistic/max-len */
-import { useContext, useEffect, useState } from 'react'
+import { ChangeEvent, useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import md5 from 'crypto-js/md5'
+import { debounce } from 'lodash'
 
 import { CharacterDetailsContext } from '../../contexts/character-details'
 import { LoaderSpin } from '../../components/LoaderSpin'
 
 import styles from './style.module.css'
+import { FaSearch } from 'react-icons/fa'
 
 export function Home() {
   const [characters, setCharacters] = useState<any[]>([])
   const [isLoading, setIsLoading] = useState(true)
-  const { setCharacterDetails } = useContext(CharacterDetailsContext)
+  const [searchQuery, setSearchQuery] = useState('')
 
+  const debouncedChangeHandler = debounce((newValue: string) => {
+    if (newValue.length) setSearchQuery(newValue)
+  }, 1500)
+
+  const { setCharacterDetails } = useContext(CharacterDetailsContext)
   const navigate = useNavigate()
 
   useEffect(() => {
     async function listMarvelCharacters(limit = 10, offset = 0) {
+      setIsLoading(true)
       const publicKey = import.meta.env.VITE_API_PUBLIC_KEY
       const privateKey = import.meta.env.VITE_API_PRIVATE_KEY
       const timestamp = new Date().getTime()
       const hash = md5(timestamp + privateKey + publicKey).toString()
-      const url = `https://gateway.marvel.com:443/v1/public/characters?ts=${timestamp}&apikey=${publicKey}&hash=${hash}&limit=${limit}&offset=${offset}`
+      let url = `https://gateway.marvel.com:443/v1/public/characters?ts=${timestamp}&apikey=${publicKey}&hash=${hash}&limit=${limit}&offset=${offset}`
+
+      if (searchQuery.length) {
+        url = `${url}&nameStartsWith=${searchQuery}`
+      }
 
       try {
         const response = await fetch(url)
@@ -33,7 +45,7 @@ export function Home() {
         return data.data.results
       } catch (error) {
         console.error('Fetch error: ', error)
-        return null
+        return []
       } finally {
         setIsLoading(false)
       }
@@ -42,16 +54,20 @@ export function Home() {
     listMarvelCharacters().then((characters) => {
       setCharacters(characters)
     })
-  }, [])
+  }, [searchQuery])
 
   function handleSuperHeroCardClick(character: any) {
     setCharacterDetails(character)
     navigate(`/details/${character.id}`)
   }
 
+  function handleNewSearchQuery(event: ChangeEvent<HTMLInputElement>) {
+    debouncedChangeHandler(event.target.value)
+  }
+
   function getSuperHeroCards() {
     if (!characters.length) return null
-    return characters.map((character) => {
+    const output = characters.map((character) => {
       return (
         <div className={styles.characterCard} key={character.id} onClick={() => handleSuperHeroCardClick(character)}>
           <img
@@ -65,35 +81,48 @@ export function Home() {
         </div>
       )
     })
+
+    output.unshift(<span className={styles.characterList_caption}>Personagens:</span>)
+    return output
   }
 
   function getLoadingContent() {
     return (
       <div className={styles.loaderContent}>
         <p className={styles.loaderMessage}>
-          🦸 Carregando a lista...
+          🦸 Buscando super-heróis...
         </p>
         <LoaderSpin />
       </div>
     )
   }
 
-  function getMainContent() {
-    return (
-      <>
-        <div className={styles.characterCards}>
-          <span className={styles.characterCards_caption}>Personagens:</span>
-          {getSuperHeroCards()}
-        </div>
-      </>
-    )
-  }
-
   return (
     <main className={styles.mainContent}>
-      {isLoading
-        ? getLoadingContent()
-        : getMainContent()}
+      <div className={styles.characterList}>
+        <h1>Busca de personagens:</h1>
+
+        <form className={styles.characterList_form}>
+          <label htmlFor="character-name" className={styles.characterList_formLabel}>
+            Nome do personagem
+          </label>
+          <div className={styles.characterList_inputContainer}>
+            <FaSearch className={styles.characterList_searchIcon} />
+            <input
+              id="character-name"
+              type="text"
+              placeholder="Search"
+              className={styles.characterList_searchInput}
+              onChange={handleNewSearchQuery}
+            />
+          </div>
+        </form>
+
+        {isLoading
+          ? getLoadingContent()
+          : getSuperHeroCards()}
+
+      </div>
     </main>
   )
 }

@@ -4,22 +4,16 @@
   flex: 1;
 }
 
-@media screen and (min-width: 768px) {
-  .mainContent {
-    padding: 2.5rem 8vw;
-  }
-}
-
-.characterCards {
+.characterList {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   justify-content: center;
 }
 
-.characterCards_caption {
+.characterList_caption {
   text-align: center;
-  font-size: 0.75rem;
+  font-size: 12px;
 }
 
 .characterCard {
@@ -40,7 +34,6 @@
 
 .characterCard_name {
   font-weight: bold;
-  font-size: 0.875rem;
 }
 
 .loaderContent {
@@ -52,5 +45,48 @@
 
 .loaderMessage {
   font-weight: bold;
-  font-size: 1.5rem;
+}
+
+.characterList_form {
+  display: flex;
+  flex-direction: column;
+}
+
+.characterList_formLabel {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.characterList_inputContainer {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.characterList_searchIcon {
+  position: absolute;
+  right: 1rem;
+  color: var(--smoke);
+}
+
+.characterList_searchInput {
+  width: 100%;
+  padding: 0.5rem 2rem 0.5rem 1rem;
+  border: none;
+  border-radius: 0.25rem;
+}
+
+.characterList_searchInput::placeholder {
+  font-style: italic;
+}
+
+@media screen and (min-width: 768px) {
+  .mainContent {
+    padding: 2.5rem 8vw;
+  }
+
+  .characterList_inputContainer {
+    max-width: 295px;
+  }
 }
