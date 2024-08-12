@@ -1,0 +1,35 @@
+.charactersTable {
+  border-spacing: 0 10px;
+  text-align: left;
+  width: 100%;
+}
+
+.charactersTable_header th {
+  padding: 0px 1.5rem;
+  font-size: 0.75rem;
+  color: var(--smoke);
+  font-weight: normal;
+}
+
+.charactersTable_columnVisibilityDesktop {
+  visibility: hidden;
+}
+
+.charactersTable_columnDisplay {
+  display: none;
+  font-size: 0.875rem;
+}
+
+@media screen and (min-width: 768px) {
+  .charactersTable_columnDisplay {
+    display: table-cell;
+  }
+
+  .charactersTable_columnVisibilityMobile {
+    visibility: hidden;
+  }
+
+  .charactersTable_columnVisibilityDesktop {
+    visibility: visible;
+  }
+}

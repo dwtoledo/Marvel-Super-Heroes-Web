@@ -1,11 +1,16 @@
+/* eslint-disable @stylistic/max-len */
 import { LoaderSpin } from '../../components/LoaderSpin'
-import styles from './LoadingContent.module.css'
+import styles from './style.module.css'
 
-export function LoadingContent() {
+interface LoadingContentProps {
+  message?: string
+}
+
+export function LoadingContent({ message = 'Carregando...' }: LoadingContentProps) {
   return (
     <div className={styles.loaderContent}>
       <p className={styles.loaderMessage}>
-        🦸 Buscando super-heróis...
+        {message}
       </p>
       <LoaderSpin />
     </div>

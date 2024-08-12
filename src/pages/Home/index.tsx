@@ -1,84 +1,102 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @stylistic/max-len */
-// Home.tsx
-import { ChangeEvent, useContext, useEffect, useState } from 'react'
+import { ChangeEvent, useContext, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
-import md5 from 'crypto-js/md5'
 import { debounce } from 'lodash'
 
+import { LoadingContent } from '../../components/LoadingContent'
+import { CharactersTable } from '../../components/CharactersTable'
+import { CharacterSearchForm } from '../../components/CharacterSearchForm'
 import { CharacterDetailsContext } from '../../contexts/character-details'
 
 import styles from './style.module.css'
-import { CharacterSearchForm } from '../../components/SearchForm'
-import { LoadingContent } from '../../components/LoadingContent'
-import { CharacterTable } from '../../components/CharacterTable'
+import { Pagination } from '../../components/Pagination'
+import { useMarvelCharacters } from '../../hooks/MarvelCharacters'
 
 export function Home() {
-  const [characters, setCharacters] = useState<any[]>([])
-  const [isLoading, setIsLoading] = useState(true)
-  const [searchQuery, setSearchQuery] = useState('')
-
-  const debouncedChangeHandler = debounce((newValue: string) => {
-    if (newValue.length) setSearchQuery(newValue)
-  }, 1500)
-
   const { setCharacterDetails } = useContext(CharacterDetailsContext)
   const navigate = useNavigate()
 
-  useEffect(() => {
-    async function listMarvelCharacters(limit = 10, offset = 0) {
-      setIsLoading(true)
-      const publicKey = import.meta.env.VITE_API_PUBLIC_KEY
-      const privateKey = import.meta.env.VITE_API_PRIVATE_KEY
-      const timestamp = new Date().getTime()
-      const hash = md5(timestamp + privateKey + publicKey).toString()
-      let url = `https://gateway.marvel.com:443/v1/public/characters?ts=${timestamp}&apikey=${publicKey}&hash=${hash}&limit=${limit}&offset=${offset}`
+  const {
+    characters,
+    isLoading,
+    currentPage,
+    totalPages,
+    setSearchQuery,
+    setCurrentPage,
+  } = useMarvelCharacters()
 
-      if (searchQuery.length) {
-        url = `${url}&nameStartsWith=${searchQuery}`
-      }
+  const debouncedChangeHandler = useMemo(
+    () => debounce((newValue: string) => setSearchQuery(newValue), 1500),
+    [setSearchQuery],
+  )
 
-      try {
-        const response = await fetch(url)
-        if (!response.ok) {
-          throw new Error('Não foi possível obter a listagem de super-heróis!')
-        }
-        const data = await response.json()
-        return data.data.results
-      } catch (error) {
-        console.error('Fetch error: ', error)
-        return []
-      } finally {
-        setIsLoading(false)
-      }
-    }
-
-    listMarvelCharacters().then((characters) => {
-      setCharacters(characters)
-    })
-  }, [searchQuery])
+  function handleNewSearchQuery(event: ChangeEvent<HTMLInputElement>) {
+    debouncedChangeHandler(event.target.value)
+    setCurrentPage(1)
+  }
 
   function handleSuperHeroCardClick(character: any) {
     setCharacterDetails(character)
     navigate(`/details/${character.id}`)
   }
 
-  function handleNewSearchQuery(event: ChangeEvent<HTMLInputElement>) {
-    debouncedChangeHandler(event.target.value)
+  function handleNextPage() {
+    handleGoToPage(currentPage + 1)
+  }
+
+  function handlePreviousPage() {
+    handleGoToPage(currentPage - 1)
+  }
+
+  function handleFirstPage() {
+    handleGoToPage(1)
+  }
+
+  function handleLastPage() {
+    handleGoToPage(totalPages)
+  }
+
+  function handleGoToPage(page: number) {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page)
+    }
   }
 
   return (
     <main className={styles.mainContent}>
-      <div className={styles.characterList}>
+      <div className={styles.charactersWrapper}>
         <h1>Busca de personagens:</h1>
 
         <CharacterSearchForm onSearchQueryChange={handleNewSearchQuery} />
 
         {isLoading
-          ? <LoadingContent />
-          : <CharacterTable characters={characters} onCharacterClick={handleSuperHeroCardClick} />}
+          ? <LoadingContent message="Buscando super-heróis..." />
+          : (<CharactersTable
+              characters={characters}
+              onCharacterClick={handleSuperHeroCardClick}
+             />)}
 
       </div>
+
+      {!characters.length
+        ? null
+        : (
+          <div className={isLoading
+            ? styles.paginationWrapperHidden
+            : styles.paginationWrapper}
+          >
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onNextPage={handleNextPage}
+              onPreviousPage={handlePreviousPage}
+              onFirstPage={handleFirstPage}
+              onLastPage={handleLastPage}
+              onGoToPage={handleGoToPage}
+            />
+          </div>
+          )}
+
     </main>
   )
 }

@@ -1,7 +1,7 @@
 /* eslint-disable @stylistic/max-len */
 import { ChangeEvent } from 'react'
 import { FaSearch } from 'react-icons/fa'
-import styles from './CharacterSearchForm.module.css'
+import styles from './style.module.css'
 
 interface CharacterSearchFormProps {
   onSearchQueryChange: (event: ChangeEvent<HTMLInputElement>) => void
@@ -9,20 +9,20 @@ interface CharacterSearchFormProps {
 
 export function CharacterSearchForm({ onSearchQueryChange }: CharacterSearchFormProps) {
   return (
-    <form className={styles.characterList_form}>
-      <label htmlFor="character-name" className={styles.characterList_formLabel}>
+    <div className={styles.characterSearchForm}>
+      <label htmlFor="character-name" className={styles.characterSearchForm_label}>
         Nome do personagem
       </label>
-      <div className={styles.characterList_inputContainer}>
-        <FaSearch className={styles.characterList_searchIcon} />
+      <div className={styles.characterSearchForm_inputContainer}>
+        <FaSearch className={styles.characterSearchForm_inputIcon} />
         <input
           id="character-name"
           type="text"
           placeholder="Search"
-          className={styles.characterList_searchInput}
+          className={styles.characterSearchForm_input}
           onChange={onSearchQueryChange}
         />
       </div>
-    </form>
+    </div>
   )
 }

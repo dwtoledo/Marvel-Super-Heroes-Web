@@ -1,147 +1,28 @@
 .mainContent {
   background-color: var(--dark-snow);
-  padding: 1.5rem;
   flex: 1;
 }
 
-.characterList {
+.charactersWrapper {
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   justify-content: center;
 }
 
-.superHeroesTable_avatar {
-  width: 3rem;
-  height: auto;
-  border-radius: 0.25rem;
-}
-
-.superHeroesTable_name {
-  font-weight: bold;
-}
-
-.loaderContent {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.loaderMessage {
-  font-weight: bold;
-}
-
-.characterList_form {
-  display: flex;
-  flex-direction: column;
-}
-
-.characterList_formLabel {
-  margin-bottom: 0.5rem;
-  font-weight: bold;
-}
-
-.characterList_inputContainer {
-  display: flex;
-  align-items: center;
-  position: relative;
-  margin-bottom: 2rem;
-}
-
-.characterList_searchIcon {
-  position: absolute;
-  right: 1rem;
-  color: var(--smoke);
-}
-
-.characterList_searchInput {
-  width: 100%;
-  padding: 0.5rem 2rem 0.5rem 1rem;
-  border: none;
-  border-radius: 0.25rem;
-}
-
-.characterList_searchInput::placeholder {
-  font-style: italic;
-}
-
-.superHeroesTable {
-  border-spacing: 0 10px;
-  text-align: left;
-}
-
-.superHeroesTable_card {
+.paginationWrapper {
   background-color: var(--white);
-  box-shadow: 0px 0px 5px var(--shadow);
+  padding: 1.625rem 0 2rem 0;
 }
 
-.superHeroesTable_card:hover {
-  cursor: pointer;
-}
-
-.superHeroesTable_card td {
-  padding: 1.25rem 1.5rem;
-}
-
-.superHeroesTable_card td:last-child {
-  border-radius: 0px 0.25rem 0.25rem 0px;
-}
-
-.superHeroesTable_card td:first-child {
-  border-radius: 0.25rem 0px 0px 0.25rem;
-}
-
-.superHeroesTable_card td:nth-child(2) {
-  border-radius: 0px 0.25rem 0.25rem 0px;
-}
-
-.superHeroesTable_header th {
-  padding: 0px 1.5rem;
-  font-size: 0.75rem;
-  color: var(--smoke);
-  font-weight: normal;
-}
-
-.superHeroesTable_columnVisibilityDesktop {
-  visibility: hidden;
-}
-
-.superHeroesTable_columnDisplay {
+.paginationWrapperHidden {
   display: none;
-  font-size: 0.875rem;
 }
 
 @media screen and (min-width: 768px) {
-  .mainContent {
-    padding: 2.5rem 8vw;
-  }
-
-  .characterList {
+  .charactersWrapper {
     align-items: start;
-  }
-
-  .characterList_inputContainer {
-    width: 295px;
-  }
-
-  .superHeroesTable_card td:first-child {
-    border-radius: 0.25rem 0px 0px 0.25rem;
-  }
-
-  .superHeroesTable_card td:nth-child(2) {
-    border-radius: 0px;
-  }
-
-  .superHeroesTable_columnDisplay {
-    display: table-cell;
-  }
-
-  .superHeroesTable_columnVisibilityMobile {
-    visibility: hidden;
-  }
-
-  .superHeroesTable_columnVisibilityDesktop {
-    visibility: visible;
+    padding: 2.5rem 8vw;
   }
 }
