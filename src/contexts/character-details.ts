@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @stylistic/max-len */
 import { Dispatch, SetStateAction, createContext } from 'react'
 
 interface CharacterDetailsContextModel {
-  characterDetails: object
+  characterDetails: any
   setCharacterDetails: Dispatch<SetStateAction<object>>
 }
 
