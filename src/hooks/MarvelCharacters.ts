@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @stylistic/max-len */
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import md5 from 'crypto-js/md5'
 
 export function useMarvelCharacters() {
@@ -9,19 +9,40 @@ export function useMarvelCharacters() {
   const [searchQuery, setSearchQuery] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
   const [totalPages, setTotalPages] = useState(1)
+  const abortControllerRef = useRef<AbortController | null>(null)
 
   const pagesLimit = 10
 
   useEffect(() => {
-    listMarvelCharacters(searchQuery, currentPage, pagesLimit).then(setCharacters)
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort()
+    }
+
+    const abortController = new AbortController()
+    abortControllerRef.current = abortController
+
+    async function fetchData() {
+      setIsLoading(true)
+      const data = await listMarvelCharacters(searchQuery, currentPage, pagesLimit, abortController)
+      if (!abortController.signal.aborted) {
+        setCharacters(data)
+        setIsLoading(false)
+      }
+    }
+
+    fetchData()
+
+    return () => {
+      abortController.abort()
+    }
   }, [searchQuery, currentPage, pagesLimit])
 
   async function listMarvelCharacters(
     searchQuery: string,
     currentPage: number,
-    limit = 10,
+    limit = pagesLimit,
+    abortController: AbortController,
   ) {
-    setIsLoading(true)
     const publicKey = import.meta.env.VITE_API_PUBLIC_KEY
     const privateKey = import.meta.env.VITE_API_PRIVATE_KEY
     const timestamp = new Date().getTime()
@@ -34,18 +55,16 @@ export function useMarvelCharacters() {
     }
 
     try {
-      const response = await fetch(url)
+      const response = await fetch(url, { signal: abortController.signal })
       if (!response.ok) {
-        throw new Error('Não foi possível obter a listagem de super-heróis!')
+        throw new Error('Não foi possível obter a listagem de personagens!')
       }
       const data = await response.json()
       setTotalPages(Math.ceil(data.data.total / limit))
       return data.data.results
-    } catch (error) {
-      console.error('Fetch error: ', error)
+    } catch (error: any) {
+      console.error('Fetch error:', error)
       return []
-    } finally {
-      setIsLoading(false)
     }
   }
 
