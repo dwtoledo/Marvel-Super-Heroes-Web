@@ -117,8 +117,12 @@
     padding: 2.5rem 8vw;
   }
 
+  .characterList {
+    align-items: start;
+  }
+
   .characterList_inputContainer {
-    max-width: 295px;
+    width: 295px;
   }
 
   .superHeroesTable_card td:first-child {
