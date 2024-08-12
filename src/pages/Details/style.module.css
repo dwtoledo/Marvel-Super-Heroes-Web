@@ -1,10 +1,23 @@
-.mainContent {
+.detailsWrapper {
   background-color: var(--dark-snow);
-  padding: 1.5rem;
   flex: 1;
 }
 
-.mainContent_title {
+.detailsContent_title {
   font-size: 1.5rem;
-  text-align: center;
+}
+
+.detailsContent {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+@media screen and (min-width: 768px) {
+  .detailsContent {
+    align-items: start;
+    padding: 2.5rem 8vw;
+  }
 }
