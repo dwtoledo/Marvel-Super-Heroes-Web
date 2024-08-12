@@ -35,7 +35,7 @@ export function Home() {
     setCurrentPage(1)
   }
 
-  function handleSuperHeroCardClick(character: any) {
+  function handleCharacterCardClick(character: any) {
     setCharacterDetails(character)
     navigate(`/details/${character.id}`)
   }
@@ -70,10 +70,10 @@ export function Home() {
         <CharacterSearchForm onSearchQueryChange={handleNewSearchQuery} />
 
         {isLoading
-          ? <LoadingContent message="Buscando super-heróis..." />
+          ? <LoadingContent message="Buscando personagens..." />
           : (<CharactersTable
               characters={characters}
-              onCharacterClick={handleSuperHeroCardClick}
+              onCharacterClick={handleCharacterCardClick}
              />)}
 
       </div>

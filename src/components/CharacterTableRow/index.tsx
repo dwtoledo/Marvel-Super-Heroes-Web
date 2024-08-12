@@ -16,7 +16,7 @@ export function CharacterTableRow({ character, onClick }: CharacterTableRowProps
         <img
           className={styles.characterCard_avatar}
           src={character.thumbnail.path + '.' + character.thumbnail.extension}
-          alt={`Imagem do super herói ${character.name}`}
+          alt={`Imagem do personagem ${character.name}`}
         />
       </td>
       <td>
