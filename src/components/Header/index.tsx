@@ -1,3 +1,4 @@
+/* eslint-disable @stylistic/max-len */
 import { Link } from 'react-router-dom'
 import ObjectiveLogo from '../../assets/images/objective-logo.png'
 import styles from './style.module.css'
@@ -16,7 +17,7 @@ export function Header() {
       <Link to="/">
         <img
           src={ObjectiveLogo}
-          alt="Objective escrito em preto e com detalhes laranja nas letras O, J e I."
+          alt="Objective logotipo escrito em preto e com detalhes laranja nas letras O, J e I."
         />
       </Link>
       <div />
