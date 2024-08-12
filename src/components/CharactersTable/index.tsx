@@ -14,7 +14,7 @@ export function CharactersTable({
   characters,
   onCharacterClick,
 }: CharacterTableProps) {
-  if (!characters.length) return <p>Não encontramos super-heróis com esse termo de busca, esperamos que não tenha nenhum vilão por perto!</p>
+  if (!characters.length) return <p className={styles.charactersTable_notFoundMessage}>Não encontramos personagens com esse termo de busca!</p>
 
   return (
     <>
