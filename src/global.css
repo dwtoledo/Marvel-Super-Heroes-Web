@@ -7,6 +7,8 @@
   --dark-blue: #167abc;
   --shadow: #00000033;
   --accent: #ff800d;
+  --foreground: #f5f5f5;
+  --text-foreground: #cccccc;
   --font-caption: "PT Sans Caption", sans-serif;
 }
 
@@ -21,6 +23,7 @@ html {
 
 h1 {
   font-size: 1.714285714285714rem;
+  font-family: var(--font-caption)
 }
 
 @media screen and (min-width: 768px) {
