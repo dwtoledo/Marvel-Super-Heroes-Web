@@ -9,17 +9,17 @@ interface CharacterSearchFormProps {
 
 export function CharacterSearchForm({ onSearchQueryChange }: CharacterSearchFormProps) {
   return (
-    <div className={styles.characterSearchForm}>
-      <label htmlFor="character-name" className={styles.characterSearchForm_label}>
+    <div className={styles.form}>
+      <label htmlFor="character-name" className={styles.form_label}>
         Nome do personagem
       </label>
-      <div className={styles.characterSearchForm_inputContainer}>
-        <FaSearch className={styles.characterSearchForm_inputIcon} />
+      <div className={styles.form_inputWrapper}>
+        <FaSearch className={styles.form_inputIcon} />
         <input
           id="character-name"
           type="text"
           placeholder="Search"
-          className={styles.characterSearchForm_input}
+          className={styles.form_input}
           onChange={onSearchQueryChange}
         />
       </div>

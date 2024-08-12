@@ -7,7 +7,7 @@ interface BackButtonProps {
 
 export function BackButton({ onClick }: BackButtonProps) {
   return (
-    <span className={styles.backButtonWrapper} onClick={onClick}>
+    <span className={styles.container} onClick={onClick}>
       <FaArrowLeft />
       Voltar
     </span>

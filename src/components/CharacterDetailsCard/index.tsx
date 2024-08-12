@@ -12,23 +12,23 @@ interface CharacterDetailsCardProps {
 
 export function CharacterDetailsCard({ avatarUrl, name, description, events, series }: CharacterDetailsCardProps) {
   return (
-    <div className={styles.characterDetailsCard}>
-      <figure className={styles.characterDetailsCard_picture}>
+    <div className={styles.card}>
+      <figure className={styles.card_picture}>
         <img src={avatarUrl} alt={`Imagem do personagem ${name}`} />
         <figcaption>
           <b>Descrição:</b> {description || 'A Marvel não disponibilizou descrição para esse personagem.'}
         </figcaption>
       </figure>
 
-      <div className={styles.characterDetailsCard_events}>
-        <h2 className={styles.characterDetailsCard_subtitle}>Eventos:</h2>
+      <div className={styles.card_events}>
+        <h2 className={styles.card_subtitle}>Eventos:</h2>
         {events.items.length
           ? events.items.map(event => <p key={uuidv4()}>{event.name}</p>)
           : <span>{name} não aparece em nenhum evento.</span>}
       </div>
 
-      <div className={styles.characterDetailsCard_series}>
-        <h2 className={styles.characterDetailsCard_subtitle}>Séries:</h2>
+      <div className={styles.card_series}>
+        <h2 className={styles.card_subtitle}>Séries:</h2>
         {series.items.length
           ? series.items.map(serie => <p key={uuidv4()}>{serie.name}</p>)
           : <span>{name} não aparece em nenhuma série.</span>}

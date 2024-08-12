@@ -1,4 +1,4 @@
-.loaderSpin {
+.content {
   font-size: 0.25rem;
   margin: 0.625rem auto;
   text-indent: -9999em;
@@ -19,7 +19,7 @@
   transform: translateZ(0);
 }
 
-.loaderSpin:before {
+.content:before {
   width: 50%;
   height: 50%;
   background: var(--accent);
@@ -30,7 +30,7 @@
   content: '';
 }
 
-.loaderSpin:after {
+.content:after {
   background: var(--dark-snow);
   width: 75%;
   height: 75%;

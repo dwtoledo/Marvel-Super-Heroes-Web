@@ -58,11 +58,11 @@ export function Pagination({
   }, [currentPage, totalPages, maxPagesToShow])
 
   return (
-    <div className={styles.pagination}>
+    <div className={styles.content}>
       <button
         onClick={onFirstPage}
         className={currentPage <= 2
-          ? styles.paginationButtonHidden
+          ? styles.buttonHidden
           : ''}
       >
         &#60;&#60;
@@ -70,7 +70,7 @@ export function Pagination({
       <button
         onClick={onPreviousPage}
         className={currentPage === 1
-          ? styles.paginationButtonHidden
+          ? styles.buttonHidden
           : ''}
       >
         &#60;
@@ -81,7 +81,7 @@ export function Pagination({
           key={pageNumber}
           onClick={() => onGoToPage(pageNumber)}
           className={pageNumber === currentPage
-            ? styles.activePage
+            ? styles.activeButton
             : ''}
         >
           {pageNumber}
@@ -91,7 +91,7 @@ export function Pagination({
       <button
         onClick={onNextPage}
         className={currentPage === totalPages
-          ? styles.paginationButtonHidden
+          ? styles.buttonHidden
           : ''}
       >
         &#62;
@@ -99,7 +99,7 @@ export function Pagination({
       <button
         onClick={onLastPage}
         className={currentPage >= totalPages - 1
-          ? styles.paginationButtonHidden
+          ? styles.buttonHidden
           : ''}
       >
         &#62;&#62;

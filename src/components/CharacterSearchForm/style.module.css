@@ -1,40 +1,40 @@
-.characterSearchForm {
+.form {
   display: flex;
   flex-direction: column;
 }
 
-.characterSearchForm_label {
+.form_label {
   margin-bottom: 0.5rem;
   font-weight: bold;
   font-family: var(--font-caption)
 }
 
-.characterSearchForm_inputContainer {
+.form_inputWrapper {
   display: flex;
   align-items: center;
   position: relative;
   margin-bottom: 2rem;
 }
 
-.characterSearchForm_inputIcon {
+.form_inputIcon {
   position: absolute;
   right: 1rem;
   color: var(--smoke);
 }
 
-.characterSearchForm_input {
+.form_input {
   width: 100%;
   padding: 0.5rem 2rem 0.5rem 1rem;
   border: none;
   border-radius: 0.25rem;
 }
 
-.characterSearchForm_input::placeholder {
+.form_input::placeholder {
   font-style: italic;
 }
 
 @media screen and (min-width: 768px) {
-  .characterSearchForm_inputContainer {
+  .form_inputWrapper {
     width: 295px;
   }
 }

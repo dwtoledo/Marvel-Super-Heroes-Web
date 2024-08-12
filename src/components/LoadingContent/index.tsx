@@ -8,8 +8,8 @@ interface LoadingContentProps {
 
 export function LoadingContent({ message = 'Carregando...' }: LoadingContentProps) {
   return (
-    <div className={styles.loaderContent}>
-      <p className={styles.loaderMessage}>
+    <div className={styles.content}>
+      <p className={styles.message}>
         {message}
       </p>
       <LoaderSpin />

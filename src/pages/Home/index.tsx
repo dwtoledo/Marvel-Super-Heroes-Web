@@ -52,7 +52,7 @@ export function Home() {
   }
 
   return (
-    <main className={styles.mainContent}>
+    <main className={styles.content}>
       <div className={styles.charactersWrapper}>
         <h1>Busca de personagens:</h1>
 

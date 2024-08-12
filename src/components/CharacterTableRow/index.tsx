@@ -11,20 +11,20 @@ interface CharacterTableRowProps {
 
 export function CharacterTableRow({ character, onClick }: CharacterTableRowProps) {
   return (
-    <tr className={styles.characterCard_card} onClick={() => onClick(character)}>
+    <tr className={styles.tableRow_card} onClick={() => onClick(character)}>
       <td>
         <img
-          className={styles.characterCard_avatar}
+          className={styles.tableRow_avatar}
           src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
           alt={`Imagem do personagem ${character.name}`}
         />
       </td>
       <td>
-        <span className={styles.characterCard_name}>
+        <span className={styles.tableRow_name}>
           {character.name}
         </span>
       </td>
-      <td className={styles.characterCard_columnDisplay}>
+      <td className={styles.tableRow_columnDisplay}>
         {!character.series.items.length
           ? '-'
           : character.series.items.map((serie: any) => (
@@ -34,7 +34,7 @@ export function CharacterTableRow({ character, onClick }: CharacterTableRowProps
             </p>
           ))}
       </td>
-      <td className={styles.characterCard_columnDisplay}>
+      <td className={styles.tableRow_columnDisplay}>
         {!character.events.items.length
           ? '-'
           : character.events.items.map((event: any) => (

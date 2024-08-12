@@ -1,5 +1,5 @@
 import styles from './style.module.css'
 
 export function LoaderSpin() {
-  return <div className={styles.loaderSpin} />
+  return <div className={styles.content} />
 }

@@ -1,16 +1,16 @@
-.pageContainer {
+.wrapper {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
-.mainContent {
+.content {
   background-color: var(--dark-snow);
   padding: 1.5rem;
   flex: 1;
 }
 
-.mainContent_title {
+.content_title {
   font-size: 1.5rem;
   text-align: center;
 }

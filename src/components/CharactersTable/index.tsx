@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid'
 import styles from './style.module.css'
 import { useNavigate } from 'react-router-dom'
 import { useContext } from 'react'
-import { CharacterDetailsContext } from '../../contexts/character-details'
+import { CharacterDetailsContext } from '../../contexts/CharacterDetails'
 
 interface CharacterTableProps {
   characters: any[]
@@ -16,7 +16,7 @@ export function CharactersTable({ characters }: CharacterTableProps) {
   const { setCharacterDetails } = useContext(CharacterDetailsContext)
   const navigate = useNavigate()
 
-  function handleCharacterCardClick(character: any) {
+  function handleTableRowClick(character: any) {
     setCharacterDetails(character)
     navigate(`/details/${character.id}`)
   }
@@ -25,18 +25,18 @@ export function CharactersTable({ characters }: CharacterTableProps) {
 
   return (
     <>
-      <table className={styles.charactersTable}>
+      <table className={styles.table}>
         <thead>
-          <tr className={styles.charactersTable_header}>
-            <th className={styles.charactersTable_columnVisibilityMobile}>Personagem</th>
-            <th className={styles.charactersTable_columnVisibilityDesktop}>Personagem</th>
-            <th className={styles.charactersTable_columnDisplay}>Séries</th>
-            <th className={styles.charactersTable_columnDisplay}>Eventos</th>
+          <tr className={styles.table_header}>
+            <th className={styles.table_columnVisibilityMobile}>Personagem</th>
+            <th className={styles.table_columnVisibilityDesktop}>Personagem</th>
+            <th className={styles.table_columnDisplay}>Séries</th>
+            <th className={styles.table_columnDisplay}>Eventos</th>
           </tr>
         </thead>
         <tbody>
           {characters.map((character) => (
-            <CharacterTableRow key={uuidv4()} character={character} onClick={handleCharacterCardClick} />
+            <CharacterTableRow key={uuidv4()} character={character} onClick={handleTableRowClick} />
           ))}
         </tbody>
       </table>

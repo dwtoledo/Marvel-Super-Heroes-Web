@@ -1,6 +1,6 @@
 /* eslint-disable @stylistic/max-len */
 import { useContext } from 'react'
-import { CharacterDetailsContext } from '../../contexts/character-details'
+import { CharacterDetailsContext } from '../../contexts/CharacterDetails'
 import { useNavigate } from 'react-router-dom'
 
 import styles from './style.module.css'
@@ -17,11 +17,11 @@ export function Details() {
   }
 
   return (
-    <main className={styles.detailsWrapper}>
-      <div className={styles.detailsContent}>
+    <main className={styles.wrapper}>
+      <div className={styles.content}>
         <BackButton onClick={handleBackButtonClick} />
 
-        <h1 className={styles.detailsContent_title}>
+        <h1 className={styles.content_title}>
           Detalhes de {characterDetails.name}:
         </h1>
 

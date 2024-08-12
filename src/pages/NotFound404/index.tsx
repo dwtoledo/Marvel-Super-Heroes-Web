@@ -3,10 +3,10 @@ import styles from './style.module.css'
 
 export function NotFound404() {
   return (
-    <div className={styles.pageContainer}>
+    <div className={styles.wrapper}>
       <Header />
-      <main className={styles.mainContent}>
-        <h1 className={styles.mainContent_title}>
+      <main className={styles.content}>
+        <h1 className={styles.content_title}>
           404 - Página não encontrada
         </h1>
       </main>

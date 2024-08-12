@@ -7,7 +7,7 @@
   box-shadow: 0px 0px 5px var(--shadow);
 }
 
-img {
+.contentWrapper img {
   height: 1.5rem;
   width: auto;
 }

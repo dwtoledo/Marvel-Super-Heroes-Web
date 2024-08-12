@@ -1,53 +1,53 @@
-.characterCard_avatar {
+.tableRow_avatar {
   width: 3rem;
   height: auto;
   border-radius: 0.25rem;
 }
 
-.characterCard_name {
+.tableRow_name {
   font-weight: bold;
 }
 
-.characterCard_columnDisplay {
+.tableRow_columnDisplay {
   display: none;
   font-size: 0.875rem;
 }
 
-.characterCard_card {
+.tableRow_card {
   background-color: var(--white);
   box-shadow: 0px 0px 5px var(--shadow);
 }
 
-.characterCard_card:hover {
+.tableRow_card:hover {
   cursor: pointer;
 }
 
-.characterCard_card td {
+.tableRow_card td {
   padding: 1.25rem 1.5rem;
 }
 
-.characterCard_card td:last-child {
+.tableRow_card td:last-child {
   border-radius: 0px 0.25rem 0.25rem 0px;
 }
 
-.characterCard_card td:first-child {
+.tableRow_card td:first-child {
   border-radius: 0.25rem 0px 0px 0.25rem;
 }
 
-.characterCard_card td:nth-child(2) {
+.tableRow_card td:nth-child(2) {
   border-radius: 0px 0.25rem 0.25rem 0px;
 }
 
 @media screen and (min-width: 768px) {
-  .characterCard_card td:first-child {
+  .tableRow_card td:first-child {
     border-radius: 0.25rem 0px 0px 0.25rem;
   }
 
-  .characterCard_card td:nth-child(2) {
+  .tableRow_card td:nth-child(2) {
     border-radius: 0px;
   }
 
-  .characterCard_columnDisplay {
+  .tableRow_columnDisplay {
     display: table-cell;
   }
 }
