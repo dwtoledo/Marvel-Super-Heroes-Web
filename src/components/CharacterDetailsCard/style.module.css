@@ -25,14 +25,39 @@
   font-size: 1rem;
 }
 
+.coverContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.coverContainer img {
+  max-width: 6rem;
+  height: auto;
+  border-radius: 0.25rem;
+}
+
+.card_events,
+.card_series {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem
+}
+
+.loadingCoverMessage {
+  font-size: 0.625rem;
+  font-weight: bold;
+  color: var(--dark-blue);
+}
+
 @media screen and (min-width: 768px) {
   .card {
     display: grid;
     grid-template-columns: 350px 1fr;
     gap: 1.5rem;
     grid-template-areas: 
-            "picture series"
-            "picture events";
+            "picture events"
+            "picture series";
   }
 
   .card_picture {
