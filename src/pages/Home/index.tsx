@@ -1,21 +1,15 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { ChangeEvent, useContext, useMemo } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { ChangeEvent, useMemo } from 'react'
 import { debounce } from 'lodash'
 
 import { LoadingContent } from '../../components/LoadingContent'
 import { CharactersTable } from '../../components/CharactersTable'
 import { CharacterSearchForm } from '../../components/CharacterSearchForm'
-import { CharacterDetailsContext } from '../../contexts/character-details'
 
 import styles from './style.module.css'
 import { Pagination } from '../../components/Pagination'
 import { useMarvelCharacters } from '../../hooks/MarvelCharacters'
 
 export function Home() {
-  const { setCharacterDetails } = useContext(CharacterDetailsContext)
-  const navigate = useNavigate()
-
   const {
     characters,
     isLoading,
@@ -33,11 +27,6 @@ export function Home() {
   function handleNewSearchQuery(event: ChangeEvent<HTMLInputElement>) {
     debouncedChangeHandler(event.target.value)
     setCurrentPage(1)
-  }
-
-  function handleCharacterCardClick(character: any) {
-    setCharacterDetails(character)
-    navigate(`/details/${character.id}`)
   }
 
   function handleNextPage() {
@@ -71,10 +60,7 @@ export function Home() {
 
         {isLoading
           ? <LoadingContent message="Buscando personagens..." />
-          : (<CharactersTable
-              characters={characters}
-              onCharacterClick={handleCharacterCardClick}
-             />)}
+          : (<CharactersTable characters={characters} />)}
 
       </div>
 

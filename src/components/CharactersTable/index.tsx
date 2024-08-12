@@ -4,16 +4,23 @@ import { CharacterTableRow } from '../CharacterTableRow'
 import { v4 as uuidv4 } from 'uuid'
 
 import styles from './style.module.css'
+import { useNavigate } from 'react-router-dom'
+import { useContext } from 'react'
+import { CharacterDetailsContext } from '../../contexts/character-details'
 
 interface CharacterTableProps {
   characters: any[]
-  onCharacterClick: (character: any) => void
 }
 
-export function CharactersTable({
-  characters,
-  onCharacterClick,
-}: CharacterTableProps) {
+export function CharactersTable({ characters }: CharacterTableProps) {
+  const { setCharacterDetails } = useContext(CharacterDetailsContext)
+  const navigate = useNavigate()
+
+  function handleCharacterCardClick(character: any) {
+    setCharacterDetails(character)
+    navigate(`/details/${character.id}`)
+  }
+
   if (!characters.length) return <p className={styles.charactersTable_notFoundMessage}>Não encontramos personagens com esse termo de busca!</p>
 
   return (
@@ -29,7 +36,7 @@ export function CharactersTable({
         </thead>
         <tbody>
           {characters.map((character) => (
-            <CharacterTableRow key={uuidv4()} character={character} onClick={onCharacterClick} />
+            <CharacterTableRow key={uuidv4()} character={character} onClick={handleCharacterCardClick} />
           ))}
         </tbody>
       </table>
