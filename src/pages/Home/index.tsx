@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @stylistic/max-len */
 import { ChangeEvent, useContext, useEffect, useState } from 'react'
+import { v4 as uuidv4 } from 'uuid'
+
 import { useNavigate } from 'react-router-dom'
 import md5 from 'crypto-js/md5'
 import { debounce } from 'lodash'
@@ -65,25 +67,68 @@ export function Home() {
     debouncedChangeHandler(event.target.value)
   }
 
-  function getSuperHeroCards() {
+  function getSuperHeroesTable() {
     if (!characters.length) return null
-    const output = characters.map((character) => {
-      return (
-        <div className={styles.characterCard} key={character.id} onClick={() => handleSuperHeroCardClick(character)}>
-          <img
-            className={styles.characterCard_avatar}
-            src={character.thumbnail.path + '.' + character.thumbnail.extension}
-            alt={`Imagem do super herói ${character.name}`}
-          />
-          <span className={styles.characterCard_name}>
-            {character.name}
-          </span>
-        </div>
-      )
-    })
 
-    output.unshift(<span className={styles.characterList_caption}>Personagens:</span>)
-    return output
+    return (
+      <table className={styles.superHeroesTable}>
+        <thead>
+          <tr className={styles.superHeroesTable_header}>
+            <th className={styles.superHeroesTable_columnVisibilityMobile}>Personagem</th>
+            <th className={styles.superHeroesTable_columnVisibilityDesktop}>Personagem</th>
+            <th className={styles.superHeroesTable_columnDisplay}>Séries</th>
+            <th className={styles.superHeroesTable_columnDisplay}>Eventos</th>
+          </tr>
+        </thead>
+        <tbody>
+          {characters.map((character) => {
+            return (
+              <tr key={character.id} className={styles.superHeroesTable_card} onClick={() => handleSuperHeroCardClick(character)}>
+                <td>
+                  <img
+                    className={styles.superHeroesTable_avatar}
+                    src={character.thumbnail.path + '.' + character.thumbnail.extension}
+                    alt={`Imagem do super herói ${character.name}`}
+                  />
+                </td>
+                <td>
+                  <span className={styles.superHeroesTable_name}>
+                    {character.name}
+                  </span>
+                </td>
+                <td className={styles.superHeroesTable_columnDisplay}>
+                  {!character.series.items.length
+                    ? '-'
+                    : (
+                        character.series.items.map((serie: any) => {
+                          return (
+                            <p key={uuidv4()}>{serie.name
+                              ? serie.name
+                              : '-'}
+                            </p>
+                          )
+                        })
+
+                      )}
+                </td>
+                <td className={styles.superHeroesTable_columnDisplay}>
+                  {!character.events.items.length
+                    ? '-'
+                    : (character.events.items.map((event: any) => {
+                        return (
+                          <p key={uuidv4()}>{event.name
+                            ? event.name
+                            : '-'}
+                          </p>
+                        )
+                      }))}
+                </td>
+              </tr>
+            )
+          })}
+        </tbody>
+      </table>
+    )
   }
 
   function getLoadingContent() {
@@ -120,7 +165,7 @@ export function Home() {
 
         {isLoading
           ? getLoadingContent()
-          : getSuperHeroCards()}
+          : getSuperHeroesTable()}
 
       </div>
     </main>
