@@ -9,7 +9,7 @@ import { CharacterDetailsCard } from '../../components/CharacterDetailsCard'
 
 export function Details() {
   const { characterDetails } = useContext(CharacterDetailsContext)
-  const characterAvatarUrl = characterDetails.thumbnail.path + '.' + characterDetails.thumbnail.extension
+  const characterAvatarUrl = `${characterDetails.thumbnail.path}.${characterDetails.thumbnail.extension}`
   const navigate = useNavigate()
 
   function handleBackButtonClick() {
