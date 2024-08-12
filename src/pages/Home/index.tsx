@@ -26,7 +26,7 @@ export function Home() {
   } = useMarvelCharacters()
 
   const debouncedChangeHandler = useMemo(
-    () => debounce((newValue: string) => setSearchQuery(newValue), 1500),
+    () => debounce((newValue: string) => setSearchQuery(newValue), 500),
     [setSearchQuery],
   )
 
