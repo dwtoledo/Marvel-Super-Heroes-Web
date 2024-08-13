@@ -25,7 +25,7 @@ export function CharacterTableRow({ character, onClick }: CharacterTableRowProps
         </span>
       </td>
       <td className={styles.tableRow_columnDisplay}>
-        {!character.series.items.length
+        {!character.series.items?.length
           ? '-'
           : character.series.items.map((serie: any) => (
             <p key={uuidv4()}>{serie.name
@@ -35,7 +35,7 @@ export function CharacterTableRow({ character, onClick }: CharacterTableRowProps
           ))}
       </td>
       <td className={styles.tableRow_columnDisplay}>
-        {!character.events.items.length
+        {!character.events.items?.length
           ? '-'
           : character.events.items.map((event: any) => (
             <p key={uuidv4()}>{event.name

@@ -21,7 +21,7 @@ export function CharactersTable({ characters }: CharacterTableProps) {
     navigate(`/details/${character.id}`)
   }
 
-  if (!characters.length) return <p className={styles.charactersTable_notFoundMessage}>Não encontramos personagens com esse termo de busca!</p>
+  if (!characters?.length) return <p className={styles.charactersTable_notFoundMessage}>Não encontramos personagens com esse termo de busca!</p>
 
   return (
     <>

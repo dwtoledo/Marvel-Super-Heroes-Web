@@ -64,7 +64,7 @@ export function Home() {
 
       </div>
 
-      {!characters.length
+      {!characters?.length
         ? null
         : (
           <div className={isLoading

@@ -84,7 +84,7 @@ export function CharacterDetailsCard({
 
       <section className={styles.card_events}>
         <h2 className={styles.card_subtitle}>Eventos:</h2>
-        {eventData.length
+        {eventData?.length
           ? (
               eventData.map((event) => (
                 <article key={event.resourceURI} className={styles.coverContainer}>
@@ -102,7 +102,7 @@ export function CharacterDetailsCard({
 
       <section className={styles.card_series}>
         <h2 className={styles.card_subtitle}>Séries:</h2>
-        {serieData.length
+        {serieData?.length
           ? (
               serieData.map((serie) => (
                 <article key={serie.resourceURI} className={styles.coverContainer}>
