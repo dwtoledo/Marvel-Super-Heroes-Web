@@ -60,7 +60,7 @@ export function CharacterDetailsCard({
     const url = `${resourceURI}?ts=${timestamp}&apikey=${publicKey}&hash=${hash}`
 
     try {
-      const response = await fetch(url)
+      const response = await fetch(url.replace('http://', 'https://'))
       if (!response.ok) {
         throw new Error('Não foi possível obter a imagem do evento!')
       }
